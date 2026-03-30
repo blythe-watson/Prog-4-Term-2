@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class SeedManager : MonoBehaviour
 {
-
     public bool hasSeed;
 
     public float toolKitRadius;
@@ -11,6 +11,9 @@ public class SeedManager : MonoBehaviour
 
     public float plantingRadius;
     public LayerMask plantableLayer;
+
+    public int score;
+    public TextMeshProUGUI scoreText;
 
     NavMeshAgent agent;
 
@@ -21,6 +24,8 @@ public class SeedManager : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         hasSeed = false;
+
+        score = 0;
     }
 
     // Update is called once per frame
@@ -35,14 +40,36 @@ public class SeedManager : MonoBehaviour
             Debug.Log("got sprout");
         }
 
-        if (hasSeed)
+        Collider[] plantables = Physics.OverlapSphere(agent.transform.position, plantingRadius, plantableLayer);
+        foreach (Collider plot in plantables)
         {
-            Collider[] plantables = Physics.OverlapSphere(agent.transform.position, plantingRadius, plantableLayer);
-            foreach (Collider collider in plantables)
+            bool planted = plot.GetComponent<SproutManager>().planted;
+            bool harvestable = plot.GetComponent<SproutManager>().harvestable;
+
+            if (hasSeed)
             {
-                hasSeed = false;
-                Debug.Log("planted sprout");
+                if (planted == false)
+                {
+                    plot.GetComponent<SproutManager>().planted = true;
+                    hasSeed = false;
+                    Debug.Log("planted sprout");
+                }
+                else
+                {
+                    Debug.Log("This plot is full");
+                }
+            }
+
+            if (harvestable)
+            {
+                plot.GetComponent<SproutManager>().harvestable = false;
+
+                score++;
+                scoreText.text = "Score:" + score;
+
+                Debug.Log("crop harvested");
             }
         }
+
     }
 }
