@@ -11,10 +11,12 @@ namespace NodeCanvas.Tasks.Actions {
 		public BBParameter<Transform> toolkitBBP;
 		public BBParameter<Transform> targetBBP;
 
-		Vector3 path;
+		Transform path;
 
+		public bool moveRight;
 		public float offset;
 		public float hopLength;
+		public GameObject hopMarker;
 
 
 		protected override void OnExecute()
@@ -25,8 +27,20 @@ namespace NodeCanvas.Tasks.Actions {
 		//Called once per frame while the action is active.
 		protected override void OnUpdate()
 		{
-			path = (agent.transform.position - toolkitBBP.value.transform.position).normalized;
-			Debug.Log(path);
+			path.transform.position = (agent.transform.position - toolkitBBP.value.transform.position);
+			
+			if(moveRight)
+			{
+                path.transform.position += Vector3.right;
+			}
+			else 
+			{
+				path.transform.position += Vector3.left;
+			}
+
+			hopMarker.transform.position = path.transform.position;
+
+				Debug.Log(path);
 		}
 	}
 }
