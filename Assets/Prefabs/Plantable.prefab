@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4410333615744237091}
   - component: {fileID: 732388822472698298}
   - component: {fileID: 7559129786413138020}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Crop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 2546721817139248914}
   - component: {fileID: 2322951996756332109}
   - component: {fileID: 691119001640242654}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprout
   m_TagString: Untagged
   m_Icon: {fileID: 0}

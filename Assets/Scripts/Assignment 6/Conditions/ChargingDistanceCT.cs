@@ -28,7 +28,7 @@ namespace NodeCanvas.Tasks.Conditions {
 		protected override bool OnCheck()
 		{
             Collider[] targets = Physics.OverlapSphere(agent.transform.position, chargeDistanceBBP.value, targetLayer);
-			Debug.Log(targets.Length);
+			//Debug.Log(targets.Length);
 			if (targets.Length > 0)
 			{
 				return true;
