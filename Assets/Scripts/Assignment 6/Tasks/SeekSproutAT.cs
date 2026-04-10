@@ -16,25 +16,20 @@ namespace NodeCanvas.Tasks.Actions {
 
 		protected override void OnExecute()
 		{
-            Collider[] plantables = Physics.OverlapSphere(agent.transform.position, seekRadiusBBP.value, sproutLayerBBP.value);
-            foreach (Collider plot in plantables)
+            Collider[] sprouts = Physics.OverlapSphere(agent.transform.position, seekRadiusBBP.value, sproutLayerBBP.value);
+            foreach (Collider sprout in sprouts)
             {
-                bool planted = plot.GetComponent<SproutManager>().planted;
-                bool harvestable = plot.GetComponent<SproutManager>().harvestable;
-
-
-                if (planted == false)
-                {
-                    sproutTargetBBP.value = plot.GetComponent<Transform>().transform;
+                    sproutTargetBBP.value = sprout.GetComponent<Transform>().transform;
                     sproutTargeted = true;
                     Debug.Log("I smell a sprout");
-                }
-                else
-                {
-                    sproutTargeted = true;
-                    Debug.Log("no succulent sprouts nearby");
-                }
+               
             }
+            if(sprouts.Length == 0)
+            {
+                sproutTargetBBP.value = null;
+                Debug.Log("no succulent sprouts detected");
+            }
+
                 EndAction(true);
 		}
 
