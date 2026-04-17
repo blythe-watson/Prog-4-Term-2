@@ -3,6 +3,7 @@ using ParadoxNotion.Design;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 namespace NodeCanvas.Tasks.Actions {
@@ -22,7 +23,15 @@ namespace NodeCanvas.Tasks.Actions {
 
 		public GameObject hopMarker;
 
+		//private NavMeshAgent navAgent;
+
 		Quaternion offsetQuaternion;
+
+		protected override string OnInit()
+		{
+            //navAgent = agent.GetComponent<NavMeshAgent>();
+            return null;
+		}
 
         protected override void OnExecute()
 		{
@@ -40,7 +49,9 @@ namespace NodeCanvas.Tasks.Actions {
 			firstSegment.y = 0;
 			
 			waypointBBP.value.transform.position = agent.transform.position + firstSegment;
-			
+
+			//navAgent.SetDestination(waypointBBP.value.transform.position);
+
             //Debug.Log("finding hop point");
 			EndAction(true);
 		}
