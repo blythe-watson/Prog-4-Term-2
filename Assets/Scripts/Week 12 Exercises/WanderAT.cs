@@ -8,7 +8,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 	public class WanderAT : ActionTask {
 
-        public BBParameter<Vector3> targetPositionBBP;
+        public BBParameter<Transform> targetPositionBBP;
         //public BBParameter<float> timeSinceLastSampleBBP;
         //public BBParameter<bool> isMovingBBP;
 
@@ -35,7 +35,7 @@ namespace NodeCanvas.Tasks.Actions {
             destination.x = randX;
             destination.y = agent.transform.position.y;
             destination.z = randZ;
-            targetPositionBBP.value = destination;
+            targetPositionBBP.value.transform.position = destination;
             Debug.Log("I didn't do anything~");
             EndAction(true);
             //timeSinceLastSampleBBP.value = 5;

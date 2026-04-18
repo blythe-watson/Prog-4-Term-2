@@ -10,7 +10,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 	public class ZigZagAT : ActionTask
 	{
-		public BBParameter<Transform> targetBBP;
+		public BBParameter<GameObject> targetBBP;
 		public BBParameter<Transform> waypointBBP;
 
 		//the vector between the agent and the target

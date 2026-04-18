@@ -11,8 +11,8 @@ namespace NodeCanvas.Tasks.Actions {
 	{
 		public BBParameter<Slider> eatingSliderBBP;
 		public BBParameter<float> eatingTimeBBP;
-		public float eatingProgress;
-		public float eatingSpeed = 0.3f;
+		public BBParameter<float> eatingProgress;
+		public BBParameter<float> eatingSpeed = 0.3f;
 		
 		protected override string OnInit()
 		{
@@ -27,10 +27,10 @@ namespace NodeCanvas.Tasks.Actions {
 		//Called once per frame while the action is active.
 		protected override void OnUpdate()
 		{
-            eatingProgress += Time.deltaTime * eatingSpeed;
-			eatingSliderBBP.value.value = eatingProgress/eatingTimeBBP.value;
+            eatingProgress.value += Time.deltaTime * eatingSpeed.value;
+			eatingSliderBBP.value.value = eatingProgress.value/eatingTimeBBP.value;
 
-			if (eatingProgress >= eatingTimeBBP.value)
+			if (eatingProgress.value >= eatingTimeBBP.value)
 			{
 				eatingSliderBBP.value.value = 0;
 				EndAction(true);
