@@ -245,7 +245,7 @@ MonoBehaviour:
   planted: 0
   harvestable: 0
   timePlanted: 0
-  growingTime: 40
+  growingTime: 20
 --- !u!1 &6418931575494390891
 GameObject:
   m_ObjectHideFlags: 0
